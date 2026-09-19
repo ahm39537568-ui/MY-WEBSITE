@@ -1,69 +1,90 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY-WEBSITE</title>
+    <title>TaskEarn - Earn by Completing Tasks</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header>
-        <h1>MY-WEBSITE</h1>
-        <p>Mobile & Computer Accessories</p>
+<header>
+    <div class="logo">TaskEarn</div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#tasks">Tasks</a>
+        <a href="#balance">Balance</a>
+        <a href="#profile">Profile</a>
+    </nav>
+</header>
 
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#products">Products</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+<section id="home" class="hero">
+    <h1>Complete Tasks & Earn Rewards</h1>
+    <p>Complete simple tasks and collect points.</p>
+    <a href="#tasks" class="btn">View Tasks</a>
+</section>
 
-    <main id="home">
-        <section class="hero">
-            <h2>Welcome to MY-WEBSITE</h2>
-            <p>Find useful mobile and computer accessories.</p>
-            <a href="#products" class="button">View Products</a>
-        </section>
+<section id="balance" class="balance-box">
+    <h2>Your Balance</h2>
+    <div class="balance" id="balance">0 Points</div>
+    <p>Completed Tasks: <span id="completed">0</span></p>
+</section>
 
-        <section id="products">
-            <h2>Our Products</h2>
+<section id="tasks">
+    <h2 class="section-title">Available Tasks</h2>
 
-            <div class="products">
-                <div class="card">
-                    <h3>Earbuds</h3>
-                    <p>Wireless earbuds and accessories.</p>
-                </div>
+    <div class="tasks-container">
 
-                <div class="card">
-                    <h3>Chargers</h3>
-                    <p>Mobile chargers and cables.</p>
-                </div>
+        <div class="task">
+            <h3>📝 Complete a Quiz</h3>
+            <p>Answer a short quiz.</p>
+            <strong>+20 Points</strong>
+            <button onclick="completeTask(this, 20)">Complete Task</button>
+        </div>
 
-                <div class="card">
-                    <h3>Computer Accessories</h3>
-                    <p>Mouse, keyboard and other accessories.</p>
-                </div>
-            </div>
-        </section>
+        <div class="task">
+            <h3>🔎 Website Research</h3>
+            <p>Read the provided information and answer a question.</p>
+            <strong>+15 Points</strong>
+            <button onclick="completeTask(this, 15)">Complete Task</button>
+        </div>
 
-        <section id="about">
-            <h2>About Us</h2>
-            <p>Welcome to our accessories website.</p>
-        </section>
+        <div class="task">
+            <h3>📊 Simple Survey</h3>
+            <p>Complete a short survey.</p>
+            <strong>+25 Points</strong>
+            <button onclick="completeTask(this, 25)">Complete Task</button>
+        </div>
 
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>For business and advertising inquiries, contact us.</p>
-        </section>
-    </main>
+        <div class="task">
+            <h3>💡 Give Feedback</h3>
+            <p>Give useful feedback about a website.</p>
+            <strong>+30 Points</strong>
+            <button onclick="completeTask(this, 30)">Complete Task</button>
+        </div>
 
-    <footer>
-        <p>© 2026 MY-WEBSITE. All rights reserved.</p>
-    </footer>
+    </div>
+</section>
 
-    <script src="script.js"></script>
+<section id="profile" class="profile">
+    <h2>Your Profile</h2>
+    <p>Member: <strong>Guest User</strong></p>
+    <p>Points: <strong id="profilePoints">0</strong></p>
+</section>
+
+<section class="withdraw">
+    <h2>Withdrawal</h2>
+    <p>Minimum withdrawal: 500 Points</p>
+    <button onclick="withdraw()">Request Withdrawal</button>
+    <p id="withdrawMessage"></p>
+</section>
+
+<footer>
+    <p>© 2026 TaskEarn. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
