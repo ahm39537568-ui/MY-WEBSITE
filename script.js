@@ -2,10 +2,17 @@
 let balance = Number(localStorage.getItem("balance")) || 0;
 let completed = Number(localStorage.getItem("completed")) || 0;
 
-document.getElementById("balance").textContent = balance;
-document.getElementById("completed").textContent = completed;
+function updateWallet() {
+  document.getElementById("balance").textContent = balance;
+  document.getElementById("completed").textContent = completed;
+  document.getElementById("withdrawBalance").textContent = balance;
+}
 
 function completeTask(reward, button) {
+
+  if (button.disabled) {
+    return;
+  }
 
   balance += reward;
   completed += 1;
@@ -13,31 +20,31 @@ function completeTask(reward, button) {
   localStorage.setItem("balance", balance);
   localStorage.setItem("completed", completed);
 
-  document.getElementById("balance").textContent = balance;
-  document.getElementById("completed").textContent = completed;
-
   button.textContent = "Completed ✓";
   button.disabled = true;
+
+  updateWallet();
 
   alert("Task completed! You earned Rs. " + reward);
 }
 
-function withdrawMoney() {
+function requestWithdrawal() {
 
-  let name = document.getElementById("name").value;
-  let method = document.getElementById("method").value;
-  let account = document.getElementById("account").value;
-  let amount = Number(document.getElementById("amount").value);
+  let amount = Number(
+    document.getElementById("withdrawAmount").value
+  );
 
-  let message = document.getElementById("withdrawMessage");
+  let method =
+    document.getElementById("paymentMethod").value;
 
-  if (!name || !method || !account || !amount) {
-    message.textContent = "Please fill all fields.";
-    return;
-  }
+  let account =
+    document.getElementById("accountNumber").value.trim();
 
-  if (amount < 100) {
-    message.textContent = "Minimum withdrawal is Rs. 100.";
+  let message =
+    document.getElementById("withdrawMessage");
+
+  if (amount <= 0) {
+    message.textContent = "Please enter a valid amount.";
     return;
   }
 
@@ -46,15 +53,29 @@ function withdrawMoney() {
     return;
   }
 
+  if (method === "") {
+    message.textContent = "Please select a payment method.";
+    return;
+  }
+
+  if (account === "") {
+    message.textContent = "Please enter your account number.";
+    return;
+  }
+
   message.textContent =
-    "Withdrawal request submitted successfully. Amount: Rs. " +
+    "Withdrawal request submitted for Rs. " +
     amount +
     " via " +
-    method;
+    method +
+    ".";
 
-  balance -= amount;
-
-  localStorage.setItem("balance", balance);
-
-  document.getElementById("balance").textContent = balance;
+  /*
+    IMPORTANT:
+    This demo does NOT actually send money.
+    A real withdrawal system needs a secure backend,
+    database and payment-provider integration.
+  */
 }
+
+updateWallet();
