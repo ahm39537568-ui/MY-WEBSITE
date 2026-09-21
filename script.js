@@ -1,60 +1,60 @@
 
-let points = Number(localStorage.getItem("taskPoints")) || 0;
+let balance = Number(localStorage.getItem("balance")) || 0;
+let completed = Number(localStorage.getItem("completed")) || 0;
 
-function updateBalance() {
-  document.getElementById("points").textContent = points;
+document.getElementById("balance").textContent = balance;
+document.getElementById("completed").textContent = completed;
+
+function completeTask(reward, button) {
+
+  balance += reward;
+  completed += 1;
+
+  localStorage.setItem("balance", balance);
+  localStorage.setItem("completed", completed);
+
+  document.getElementById("balance").textContent = balance;
+  document.getElementById("completed").textContent = completed;
+
+  button.textContent = "Completed ✓";
+  button.disabled = true;
+
+  alert("Task completed! You earned Rs. " + reward);
 }
 
-function completeTask(reward, taskId) {
+function withdrawMoney() {
 
-  if (localStorage.getItem(taskId)) {
-    alert("You have already completed this task.");
+  let name = document.getElementById("name").value;
+  let method = document.getElementById("method").value;
+  let account = document.getElementById("account").value;
+  let amount = Number(document.getElementById("amount").value);
+
+  let message = document.getElementById("withdrawMessage");
+
+  if (!name || !method || !account || !amount) {
+    message.textContent = "Please fill all fields.";
     return;
   }
 
-  points += reward;
+  if (amount < 100) {
+    message.textContent = "Minimum withdrawal is Rs. 100.";
+    return;
+  }
 
-  localStorage.setItem("taskPoints", points);
-  localStorage.setItem(taskId, "completed");
+  if (amount > balance) {
+    message.textContent = "Insufficient balance.";
+    return;
+  }
 
-  updateBalance();
+  message.textContent =
+    "Withdrawal request submitted successfully. Amount: Rs. " +
+    amount +
+    " via " +
+    method;
 
-  alert("Task completed! You earned " + reward + " points.");
+  balance -= amount;
+
+  localStorage.setItem("balance", balance);
+
+  document.getElementById("balance").textContent = balance;
 }
-
-function requestWithdrawal() {
-
-  const method = document.getElementById("method").value;
-  const account = document.getElementById("account").value.trim();
-  const amount = Number(document.getElementById("withdrawPoints").value);
-
-  if (amount < 500) {
-    document.getElementById("withdrawMessage").textContent =
-      "Minimum withdrawal is 500 points.";
-    return;
-  }
-
-  if (amount > points) {
-    document.getElementById("withdrawMessage").textContent =
-      "You do not have enough points.";
-    return;
-  }
-
-  if (account.length < 10) {
-    document.getElementById("withdrawMessage").textContent =
-      "Please enter a valid account number.";
-    return;
-  }
-
-  document.getElementById("withdrawMessage").textContent =
-    "Withdrawal request submitted for " +
-    amount + " points through " + method +
-    ". It will require admin approval.";
-
-  points -= amount;
-  localStorage.setItem("taskPoints", points);
-
-  updateBalance();
-}
-
-updateBalance();
