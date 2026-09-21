@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TaskEarn - Complete Tasks & Earn</title>
+  <title>TaskEarn - Earn by Completing Tasks</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,63 +12,75 @@
 
 <header>
   <div class="logo">TaskEarn</div>
-  <p>Complete Small Tasks & Earn Rewards</p>
 
   <nav>
     <a href="#home">Home</a>
     <a href="#tasks">Tasks</a>
-    <a href="#balance">My Balance</a>
+    <a href="#wallet">Wallet</a>
     <a href="#withdraw">Withdraw</a>
+    <a href="#about">About</a>
   </nav>
 </header>
 
-<main>
-
 <section id="home" class="hero">
-  <h1>Complete Tasks & Earn</h1>
-  <p>Complete available tasks and collect points.</p>
-  <a href="#tasks" class="button">View Tasks</a>
+  <h1>Earn Money by Completing Simple Tasks</h1>
+  <p>Complete small online tasks and earn rewards.</p>
+  <a href="#tasks" class="btn">View Available Tasks</a>
 </section>
 
-<section id="balance" class="balance-box">
-  <h2>My Balance</h2>
-  <div class="balance">
-    <span id="points">0</span> Points
+<section id="wallet" class="wallet">
+  <h2>My Wallet</h2>
+
+  <div class="balance-box">
+    <p>Your Balance</p>
+    <h1>Rs. <span id="balance">0</span></h1>
   </div>
-  <p>100 Points = Rs. 10</p>
+
+  <div class="stats">
+    <div>
+      <h3 id="completed">0</h3>
+      <p>Tasks Completed</p>
+    </div>
+
+    <div>
+      <h3>Rs. 0</h3>
+      <p>Withdrawn</p>
+    </div>
+  </div>
 </section>
 
-<section id="tasks">
+<section id="tasks" class="tasks-section">
   <h2>Available Tasks</h2>
+  <p>Complete a task to earn your reward.</p>
 
-  <div class="tasks">
-
-    <div class="task">
-      <h3>Task 1 - Visit a Website</h3>
-      <p>Visit the assigned website and stay for the required time.</p>
-      <strong>+50 Points</strong>
-      <button onclick="completeTask(50, 'task1')">Complete Task</button>
-    </div>
+  <div class="task-container">
 
     <div class="task">
-      <h3>Task 2 - Read an Article</h3>
-      <p>Read the provided article carefully.</p>
-      <strong>+30 Points</strong>
-      <button onclick="completeTask(30, 'task2')">Complete Task</button>
-    </div>
-
-    <div class="task">
-      <h3>Task 3 - Simple Survey</h3>
+      <h3>📝 Simple Survey</h3>
       <p>Complete a short survey.</p>
-      <strong>+100 Points</strong>
-      <button onclick="completeTask(100, 'task3')">Complete Task</button>
+      <strong>Reward: Rs. 20</strong>
+      <button onclick="completeTask(20, this)">Complete Task</button>
     </div>
 
     <div class="task">
-      <h3>Task 4 - Watch Information Video</h3>
-      <p>Watch the assigned information video.</p>
-      <strong>+75 Points</strong>
-      <button onclick="completeTask(75, 'task4')">Complete Task</button>
+      <h3>🔎 Website Visit</h3>
+      <p>Visit a website and check the information.</p>
+      <strong>Reward: Rs. 10</strong>
+      <button onclick="completeTask(10, this)">Complete Task</button>
+    </div>
+
+    <div class="task">
+      <h3>📱 App Research</h3>
+      <p>Check an app and answer simple questions.</p>
+      <strong>Reward: Rs. 30</strong>
+      <button onclick="completeTask(30, this)">Complete Task</button>
+    </div>
+
+    <div class="task">
+      <h3>✍️ Writing Task</h3>
+      <p>Write a short review or description.</p>
+      <strong>Reward: Rs. 50</strong>
+      <button onclick="completeTask(50, this)">Complete Task</button>
     </div>
 
   </div>
@@ -76,26 +89,38 @@
 <section id="withdraw" class="withdraw">
   <h2>Withdraw Earnings</h2>
 
-  <p>Minimum withdrawal: 500 Points</p>
+  <p>Minimum withdrawal: Rs. 100</p>
 
-  <label>Payment Method</label>
+  <input type="text" id="name" placeholder="Your Name">
+
   <select id="method">
+    <option value="">Select Payment Method</option>
     <option>JazzCash</option>
     <option>Easypaisa</option>
   </select>
 
-  <label>Account Number</label>
-  <input type="text" id="account" placeholder="03XXXXXXXXX">
+  <input type="text" id="account" placeholder="JazzCash / Easypaisa Number">
 
-  <label>Points to Withdraw</label>
-  <input type="number" id="withdrawPoints" placeholder="500">
+  <input type="number" id="amount" placeholder="Withdrawal Amount">
 
-  <button onclick="requestWithdrawal()">Submit Withdrawal Request</button>
+  <button onclick="withdrawMoney()">Submit Withdrawal Request</button>
 
   <p id="withdrawMessage"></p>
 </section>
 
-</main>
+<section id="about" class="about">
+  <h2>About TaskEarn</h2>
+
+  <p>
+    TaskEarn is a task-based earning platform where users can
+    complete simple tasks and earn rewards.
+  </p>
+
+  <p>
+    Users can view available tasks, complete tasks, check their
+    balance and submit withdrawal requests.
+  </p>
+</section>
 
 <footer>
   <p>© 2026 TaskEarn. All Rights Reserved.</p>
