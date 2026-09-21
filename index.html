@@ -1,90 +1,107 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskEarn - Earn by Completing Tasks</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskEarn - Complete Tasks & Earn</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-    <div class="logo">TaskEarn</div>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#tasks">Tasks</a>
-        <a href="#balance">Balance</a>
-        <a href="#profile">Profile</a>
-    </nav>
+  <div class="logo">TaskEarn</div>
+  <p>Complete Small Tasks & Earn Rewards</p>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#tasks">Tasks</a>
+    <a href="#balance">My Balance</a>
+    <a href="#withdraw">Withdraw</a>
+  </nav>
 </header>
 
+<main>
+
 <section id="home" class="hero">
-    <h1>Complete Tasks & Earn Rewards</h1>
-    <p>Complete simple tasks and collect points.</p>
-    <a href="#tasks" class="btn">View Tasks</a>
+  <h1>Complete Tasks & Earn</h1>
+  <p>Complete available tasks and collect points.</p>
+  <a href="#tasks" class="button">View Tasks</a>
 </section>
 
 <section id="balance" class="balance-box">
-    <h2>Your Balance</h2>
-    <div class="balance" id="balance">0 Points</div>
-    <p>Completed Tasks: <span id="completed">0</span></p>
+  <h2>My Balance</h2>
+  <div class="balance">
+    <span id="points">0</span> Points
+  </div>
+  <p>100 Points = Rs. 10</p>
 </section>
 
 <section id="tasks">
-    <h2 class="section-title">Available Tasks</h2>
+  <h2>Available Tasks</h2>
 
-    <div class="tasks-container">
+  <div class="tasks">
 
-        <div class="task">
-            <h3>📝 Complete a Quiz</h3>
-            <p>Answer a short quiz.</p>
-            <strong>+20 Points</strong>
-            <button onclick="completeTask(this, 20)">Complete Task</button>
-        </div>
-
-        <div class="task">
-            <h3>🔎 Website Research</h3>
-            <p>Read the provided information and answer a question.</p>
-            <strong>+15 Points</strong>
-            <button onclick="completeTask(this, 15)">Complete Task</button>
-        </div>
-
-        <div class="task">
-            <h3>📊 Simple Survey</h3>
-            <p>Complete a short survey.</p>
-            <strong>+25 Points</strong>
-            <button onclick="completeTask(this, 25)">Complete Task</button>
-        </div>
-
-        <div class="task">
-            <h3>💡 Give Feedback</h3>
-            <p>Give useful feedback about a website.</p>
-            <strong>+30 Points</strong>
-            <button onclick="completeTask(this, 30)">Complete Task</button>
-        </div>
-
+    <div class="task">
+      <h3>Task 1 - Visit a Website</h3>
+      <p>Visit the assigned website and stay for the required time.</p>
+      <strong>+50 Points</strong>
+      <button onclick="completeTask(50, 'task1')">Complete Task</button>
     </div>
+
+    <div class="task">
+      <h3>Task 2 - Read an Article</h3>
+      <p>Read the provided article carefully.</p>
+      <strong>+30 Points</strong>
+      <button onclick="completeTask(30, 'task2')">Complete Task</button>
+    </div>
+
+    <div class="task">
+      <h3>Task 3 - Simple Survey</h3>
+      <p>Complete a short survey.</p>
+      <strong>+100 Points</strong>
+      <button onclick="completeTask(100, 'task3')">Complete Task</button>
+    </div>
+
+    <div class="task">
+      <h3>Task 4 - Watch Information Video</h3>
+      <p>Watch the assigned information video.</p>
+      <strong>+75 Points</strong>
+      <button onclick="completeTask(75, 'task4')">Complete Task</button>
+    </div>
+
+  </div>
 </section>
 
-<section id="profile" class="profile">
-    <h2>Your Profile</h2>
-    <p>Member: <strong>Guest User</strong></p>
-    <p>Points: <strong id="profilePoints">0</strong></p>
+<section id="withdraw" class="withdraw">
+  <h2>Withdraw Earnings</h2>
+
+  <p>Minimum withdrawal: 500 Points</p>
+
+  <label>Payment Method</label>
+  <select id="method">
+    <option>JazzCash</option>
+    <option>Easypaisa</option>
+  </select>
+
+  <label>Account Number</label>
+  <input type="text" id="account" placeholder="03XXXXXXXXX">
+
+  <label>Points to Withdraw</label>
+  <input type="number" id="withdrawPoints" placeholder="500">
+
+  <button onclick="requestWithdrawal()">Submit Withdrawal Request</button>
+
+  <p id="withdrawMessage"></p>
 </section>
 
-<section class="withdraw">
-    <h2>Withdrawal</h2>
-    <p>Minimum withdrawal: 500 Points</p>
-    <button onclick="withdraw()">Request Withdrawal</button>
-    <p id="withdrawMessage"></p>
-</section>
+</main>
 
 <footer>
-    <p>© 2026 TaskEarn. All rights reserved.</p>
+  <p>© 2026 TaskEarn. All Rights Reserved.</p>
 </footer>
 
 <script src="script.js"></script>
+
 </body>
 </html>
