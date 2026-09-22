@@ -1,121 +1,268 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>TaskEarn - Complete Tasks & Earn</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-  <div class="logo">TaskEarn</div>
+  <!-- HEADER -->
+  <header>
+    <div class="logo">TaskEarn</div>
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#tasks">Tasks</a>
-    <a href="#wallet">Wallet</a>
-    <a href="#about">About</a>
-  </nav>
-</header>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#tasks">Tasks</a>
+      <a href="#wallet">Wallet</a>
+      <a href="#withdraw">Withdraw</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
 
-<section id="home" class="hero">
-  <h1>Complete Tasks & Earn Rewards</h1>
-  <p>Complete simple tasks and collect your rewards.</p>
-  <a href="#tasks" class="main-btn">View Tasks</a>
-</section>
 
-<section id="wallet" class="wallet">
-  <div class="wallet-box">
-    <h3>Your Balance</h3>
-    <p>Rs. <span id="balance">0</span></p>
-  </div>
+  <!-- HERO -->
+  <section class="hero" id="home">
 
-  <div class="wallet-box">
-    <h3>Completed Tasks</h3>
-    <p><span id="completed">0</span></p>
-  </div>
-</section>
+    <div class="hero-content">
 
-<section id="tasks" class="tasks-section">
-  <h2>Available Tasks</h2>
+      <h1>Complete Tasks & Earn Rewards</h1>
 
-  <div class="task-container">
+      <p>
+        Complete simple tasks and collect demo rewards.
+      </p>
 
-    <div class="task-card">
-      <h3>Task 1</h3>
-      <p>Visit our website and read the information.</p>
-      <strong>Reward: Rs. 10</strong>
-      <button onclick="completeTask(10, this)">Complete Task</button>
+      <a href="#tasks" class="hero-button">
+        View Tasks
+      </a>
+
     </div>
 
-    <div class="task-card">
-      <h3>Task 2</h3>
-      <p>Read the provided article for a few minutes.</p>
-      <strong>Reward: Rs. 15</strong>
-      <button onclick="completeTask(15, this)">Complete Task</button>
+  </section>
+
+
+  <!-- WALLET -->
+  <section class="wallet-section" id="wallet">
+
+    <h2>My Wallet</h2>
+
+    <div class="wallet-container">
+
+      <div class="wallet-card">
+        <h3>Available Balance</h3>
+        <p>Rs. <span id="balance">0</span></p>
+      </div>
+
+      <div class="wallet-card">
+        <h3>Completed Tasks</h3>
+        <p><span id="completed">0</span></p>
+      </div>
+
     </div>
 
-    <div class="task-card">
-      <h3>Task 3</h3>
-      <p>Complete this simple website activity.</p>
-      <strong>Reward: Rs. 20</strong>
-      <button onclick="completeTask(20, this)">Complete Task</button>
+  </section>
+
+
+  <!-- TASKS -->
+  <section class="tasks-section" id="tasks">
+
+    <h2>Available Tasks</h2>
+
+    <p class="section-text">
+      Complete a task to add its demo reward to your wallet.
+    </p>
+
+    <div class="tasks-container">
+
+      <!-- TASK 1 -->
+      <div class="task-card">
+
+        <h3>Task 1</h3>
+
+        <p>
+          Visit a sample page and complete the task.
+        </p>
+
+        <div class="reward">
+          Reward: Rs. 10
+        </div>
+
+        <button onclick="completeTask(10, this)">
+          Complete Task
+        </button>
+
+      </div>
+
+
+      <!-- TASK 2 -->
+      <div class="task-card">
+
+        <h3>Task 2</h3>
+
+        <p>
+          Read a short article and complete the task.
+        </p>
+
+        <div class="reward">
+          Reward: Rs. 15
+        </div>
+
+        <button onclick="completeTask(15, this)">
+          Complete Task
+        </button>
+
+      </div>
+
+
+      <!-- TASK 3 -->
+      <div class="task-card">
+
+        <h3>Task 3</h3>
+
+        <p>
+          Complete a simple website activity.
+        </p>
+
+        <div class="reward">
+          Reward: Rs. 20
+        </div>
+
+        <button onclick="completeTask(20, this)">
+          Complete Task
+        </button>
+
+      </div>
+
+
+      <!-- TASK 4 -->
+      <div class="task-card">
+
+        <h3>Task 4</h3>
+
+        <p>
+          Complete a sample online activity.
+        </p>
+
+        <div class="reward">
+          Reward: Rs. 25
+        </div>
+
+        <button onclick="completeTask(25, this)">
+          Complete Task
+        </button>
+
+      </div>
+
     </div>
 
-    <div class="task-card">
-      <h3>Task 4</h3>
-      <p>Check the information and complete the task.</p>
-      <strong>Reward: Rs. 25</strong>
-      <button onclick="completeTask(25, this)">Complete Task</button>
+  </section>
+
+
+  <!-- WITHDRAW -->
+  <section class="withdraw-section" id="withdraw">
+
+    <h2>Demo Withdrawal</h2>
+
+    <p>
+      Available Balance:
+      <strong>Rs. <span id="withdrawBalance">0</span></strong>
+    </p>
+
+    <div class="withdraw-box">
+
+      <label>Enter Amount</label>
+
+      <input
+        type="number"
+        id="withdrawAmount"
+        placeholder="Enter amount"
+        min="1"
+      >
+
+
+      <label>Payment Method</label>
+
+      <select id="paymentMethod">
+
+        <option value="">
+          Select Payment Method
+        </option>
+
+        <option value="JazzCash Demo">
+          JazzCash Demo
+        </option>
+
+        <option value="Easypaisa Demo">
+          Easypaisa Demo
+        </option>
+
+      </select>
+
+
+      <label>Demo Account ID</label>
+
+      <input
+        type="text"
+        id="accountNumber"
+        placeholder="Enter demo ID"
+      >
+
+
+      <button onclick="requestWithdrawal()">
+        Submit Demo Request
+      </button>
+
+      <p id="withdrawMessage"></p>
+
+      <small>
+        This is a demo website. No real money is transferred.
+      </small>
+
     </div>
 
-  </div>
-</section>
+  </section>
 
-<section class="withdraw">
-  <h2>Withdraw Rewards</h2>
-  <p>Available Balance: Rs. <span id="withdrawBalance">0</span></p>
 
-  <input
-    type="number"
-    id="withdrawAmount"
-    placeholder="Enter amount"
-  >
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
 
-  <select id="paymentMethod">
-    <option value="">Select Payment Method</option>
-    <option value="JazzCash">JazzCash</option>
-    <option value="Easypaisa">Easypaisa</option>
-  </select>
+    <h2>About TaskEarn</h2>
 
-  <input
-    type="text"
-    id="accountNumber"
-    placeholder="Enter account number"
-  >
+    <p>
+      TaskEarn is a demo task-reward website concept where
+      users can complete simple activities and see rewards
+      added to their demo wallet.
+    </p>
 
-  <button onclick="requestWithdrawal()">Request Withdrawal</button>
+    <p>
+      The current version is designed for learning and testing.
+      Real payments require a secure backend, database,
+      verification system and authorized payment integration.
+    </p>
 
-  <p id="withdrawMessage"></p>
-</section>
+  </section>
 
-<section id="about" class="about">
-  <h2>About TaskEarn</h2>
-  <p>
-    TaskEarn is a task-reward website concept where users can
-    complete available tasks and receive rewards according to
-    the site's rules.
-  </p>
-</section>
 
-<footer>
-  <p>© 2026 TaskEarn. All Rights Reserved.</p>
-</footer>
+  <!-- FOOTER -->
+  <footer>
 
-<script src="script.js"></script>
+    <p>
+      © 2026 TaskEarn. All Rights Reserved.
+    </p>
+
+    <p>
+      Demo / Educational Project
+    </p>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+  <script src="script.js"></script>
 
 </body>
 </html>
