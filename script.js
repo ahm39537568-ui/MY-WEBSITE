@@ -1,81 +1,260 @@
+/* =================================
+   TASK EARN - WEBSITE JAVASCRIPT
+   Demo / Educational Version
+   ================================= */
 
-let balance = Number(localStorage.getItem("balance")) || 0;
-let completed = Number(localStorage.getItem("completed")) || 0;
+
+// Get saved wallet data
+let balance = Number(localStorage.getItem("taskEarnBalance")) || 0;
+let completed = Number(localStorage.getItem("taskEarnCompleted")) || 0;
+
+
+// Get completed task list
+let completedTasks =
+  JSON.parse(localStorage.getItem("taskEarnCompletedTasks")) || [];
+
+
+// =================================
+// UPDATE WALLET
+// =================================
 
 function updateWallet() {
-  document.getElementById("balance").textContent = balance;
-  document.getElementById("completed").textContent = completed;
-  document.getElementById("withdrawBalance").textContent = balance;
+
+  const balanceElement = document.getElementById("balance");
+  const completedElement = document.getElementById("completed");
+  const withdrawBalanceElement =
+    document.getElementById("withdrawBalance");
+
+  if (balanceElement) {
+    balanceElement.textContent = balance;
+  }
+
+  if (completedElement) {
+    completedElement.textContent = completed;
+  }
+
+  if (withdrawBalanceElement) {
+    withdrawBalanceElement.textContent = balance;
+  }
 }
+
+
+// =================================
+// SAVE DATA
+// =================================
+
+function saveData() {
+
+  localStorage.setItem(
+    "taskEarnBalance",
+    balance
+  );
+
+  localStorage.setItem(
+    "taskEarnCompleted",
+    completed
+  );
+
+  localStorage.setItem(
+    "taskEarnCompletedTasks",
+    JSON.stringify(completedTasks)
+  );
+}
+
+
+// =================================
+// COMPLETE TASK
+// =================================
 
 function completeTask(reward, button) {
 
-  if (button.disabled) {
+  // Find which task button was clicked
+  const allTaskButtons =
+    document.querySelectorAll(".task-card button");
+
+  const taskNumber =
+    Array.from(allTaskButtons).indexOf(button) + 1;
+
+
+  // Prevent completing the same task twice
+  if (completedTasks.includes(taskNumber)) {
+
+    button.textContent = "Completed ✓";
+    button.disabled = true;
+
     return;
   }
 
-  balance += reward;
+
+  // Add reward
+  balance += Number(reward);
+
   completed += 1;
 
-  localStorage.setItem("balance", balance);
-  localStorage.setItem("completed", completed);
 
+  // Save task number
+  completedTasks.push(taskNumber);
+
+
+  // Save everything
+  saveData();
+
+
+  // Update button
   button.textContent = "Completed ✓";
   button.disabled = true;
 
+
+  // Update wallet
   updateWallet();
 
-  alert("Task completed! You earned Rs. " + reward);
+
+  // Show message
+  alert(
+    "Task completed!\n\n" +
+    "Demo reward added: Rs. " +
+    reward
+  );
 }
+
+
+// =================================
+// RESTORE COMPLETED TASKS
+// =================================
+
+function restoreCompletedTasks() {
+
+  const allTaskButtons =
+    document.querySelectorAll(".task-card button");
+
+
+  allTaskButtons.forEach(function(button, index) {
+
+    const taskNumber = index + 1;
+
+
+    if (completedTasks.includes(taskNumber)) {
+
+      button.textContent = "Completed ✓";
+      button.disabled = true;
+
+    }
+
+  });
+}
+
+
+// =================================
+// DEMO WITHDRAWAL
+// =================================
 
 function requestWithdrawal() {
 
-  let amount = Number(
-    document.getElementById("withdrawAmount").value
-  );
+  const amountInput =
+    document.getElementById("withdrawAmount");
 
-  let method =
-    document.getElementById("paymentMethod").value;
+  const methodInput =
+    document.getElementById("paymentMethod");
 
-  let account =
-    document.getElementById("accountNumber").value.trim();
+  const accountInput =
+    document.getElementById("accountNumber");
 
-  let message =
+  const message =
     document.getElementById("withdrawMessage");
 
-  if (amount <= 0) {
-    message.textContent = "Please enter a valid amount.";
+
+  const amount =
+    Number(amountInput.value);
+
+  const method =
+    methodInput.value;
+
+  const account =
+    accountInput.value.trim();
+
+
+  // Clear previous message
+  message.textContent = "";
+
+
+  // Validate amount
+  if (!amount || amount <= 0) {
+
+    message.textContent =
+      "Please enter a valid amount.";
+
     return;
   }
 
+
+  // Check balance
   if (amount > balance) {
-    message.textContent = "Insufficient balance.";
+
+    message.textContent =
+      "Insufficient demo balance.";
+
     return;
   }
 
+
+  // Check payment method
   if (method === "") {
-    message.textContent = "Please select a payment method.";
+
+    message.textContent =
+      "Please select a payment method.";
+
     return;
   }
 
+
+  // Check demo account ID
   if (account === "") {
-    message.textContent = "Please enter your account number.";
+
+    message.textContent =
+      "Please enter a demo account ID.";
+
     return;
   }
 
+
+  // Deduct demo balance
+  balance -= amount;
+
+
+  // Save updated balance
+  saveData();
+
+
+  // Update wallet
+  updateWallet();
+
+
+  // Show success message
   message.textContent =
-    "Withdrawal request submitted for Rs. " +
+    "Demo withdrawal request submitted: Rs. " +
     amount +
     " via " +
     method +
     ".";
 
-  /*
-    IMPORTANT:
-    This demo does NOT actually send money.
-    A real withdrawal system needs a secure backend,
-    database and payment-provider integration.
-  */
+
+  // Clear form
+  amountInput.value = "";
+  methodInput.value = "";
+  accountInput.value = "";
+
+
+  alert(
+    "Demo withdrawal request submitted!\n\n" +
+    "No real money was transferred."
+  );
 }
 
+
+// =================================
+// START WEBSITE
+// =================================
+
 updateWallet();
+
+restoreCompletedTasks();
